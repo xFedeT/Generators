@@ -8,13 +8,15 @@
 # Materials Link: https://helpch.at/docs/1.8/org/bukkit/Material.html
 # Effetcs Link: https://helpch.at/docs/1.8/org/bukkit/Effect.html
 # Sounds Link: https://helpch.at/docs/1.8/index.html?org/bukkit/Sound.html
+
 generators:
   diamond:
     chargingMaterial: "STONE"
     chargedMaterial: "DIAMOND_ORE"
     delay: 5
-    itemDropped: "DIAMOND"
-      quantity: 2
+    drop: 
+      item: "DIAMOND"
+      quantity: 1
     chargeEffect: "CRIT"
     chargeSound: "CHEST_OPEN"
 
@@ -22,7 +24,8 @@ generators:
     chargingMaterial: "STONE"
     chargedMaterial: "COBBLESTONE"
     delay: 5
-    itemDropped: "STONE_BUTTON"
+    drop: 
+      item: "STONE_BUTTON"
       quantity: 2
     chargeEffect: "CRIT"
     chargeSound: "CHEST_OPEN"
@@ -30,8 +33,9 @@ generators:
   dirt:
     chargingMaterial: "GRASS"
     chargedMaterial: "DIRT"
-    delay: 5
-    itemDropped: "EGG"
+    delay: 1
+    drop:
+      item: "EGG"
       quantity: 2
     chargeEffect: "CRIT"
     chargeSound: "CHEST_OPEN"
