@@ -1,0 +1,7 @@
+name: GeneratorsLite
+version: '${project.version}'
+main: it.fedet.generatorslite.GeneratorsLite
+authors: [ FedeT_, ThreeWhi ]
+commands:
+  generators:
+    aliases: [gens]
