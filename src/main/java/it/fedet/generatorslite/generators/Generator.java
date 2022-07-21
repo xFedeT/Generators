@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.*;
 
 @SuppressWarnings("SuspiciousMethodCalls")
-public abstract class Generator {
+public class Generator {
     @Getter private final int rechargeTime;
     @Getter private final Material chargingMaterial;
     @Getter private final Material chargedMaterial;
@@ -25,7 +25,7 @@ public abstract class Generator {
     private final String customID;
     private final List<String> generatroItemLore;
     @Getter final private ItemStack generatorItem;
-    private final List<ArmorStand> generatorArmors;
+    private final List<ArmorStand> generatorsPotins;
 
     public Generator(int rechargeTime, Material chargingMaterial, Material chargedMaterial,
                      Effect readyEffetc, ItemStack dropItem, String generatorName, GeneratorsLite plugin) {
@@ -37,14 +37,14 @@ public abstract class Generator {
         this.generatorName = generatorName;
         this.plugin = plugin;
 
-        customID = "generator: " + UUID.randomUUID();
+        customID = "generator: " + generatorName;
         generatroItemLore = Arrays.asList(" ", ChatColor.GOLD + "Break me!", "");
         generatorItem = new ItemStack(chargedMaterial);
         ItemMeta generatorItemMeta = generatorItem.getItemMeta();
         generatorItemMeta.setDisplayName(generatorName);
         generatorItemMeta.setLore(generatroItemLore);
         generatorItem.setItemMeta(generatorItemMeta);
-        generatorArmors = new ArrayList<>();
+        generatorsPotins = new ArrayList<>();
     }
 
     public void onBreak(BlockBreakEvent event) {
@@ -88,7 +88,7 @@ public abstract class Generator {
         generatorArmor.setGravity(false);
         generatorArmor.setMarker(true);
         generatorArmor.setSmall(true);
-        generatorArmors.add(generatorArmor);
+        generatorsPotins.add(generatorArmor);
         placedBlock.setType(chargingMaterial);
         generateGenerator(placedBlock);
     }
@@ -98,7 +98,9 @@ public abstract class Generator {
             if (!isGenerator(placedBlock)) return;
 
             placedBlock.setType(chargedMaterial);
-            placedBlock.getWorld().playEffect(placedBlock.getLocation().add(.5, .5, .5), readyEffetc, null, );
+            for (int i = 0; i < 10; i++) {
+                placedBlock.getWorld().playEffect(placedBlock.getLocation().add(.5, .5, .5), readyEffetc, null);
+            }
             placedBlock.getWorld().playSound(placedBlock.getLocation().add(.5, .5, .5), Sound.CHEST_OPEN, 0.3f, 0);
         }, rechargeTime * 20L);
     }
@@ -107,7 +109,7 @@ public abstract class Generator {
         boolean isGenerator = false;
 
         for (Entity entity : placedBlock.getWorld().getNearbyEntities(placedBlock.getLocation().add(.5, 0, .5), .5, .5, .5)) {
-            if (!generatorArmors.contains(entity)) continue;
+            if (!generatorsPotins.contains(entity)) continue;
             isGenerator = true;
             break;
         }
@@ -119,9 +121,14 @@ public abstract class Generator {
         ArmorStand armorStand = null;
 
         for (Entity entity : placedBlock.getWorld().getNearbyEntities(placedBlock.getLocation().add(.5, 0, .5), .5, .5, .5)) {
-            if (generatorArmors.contains(entity)) armorStand = (ArmorStand) entity;
+            if (generatorsPotins.contains(entity)) armorStand = (ArmorStand) entity;
         }
 
         return armorStand;
+    }
+
+    public void addGeneratorPoint(ArmorStand point) {
+        generatorsPotins.add(point);
+        generateGenerator(point.getLocation().getBlock());
     }
 }

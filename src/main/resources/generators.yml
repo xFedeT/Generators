@@ -1,0 +1,37 @@
+#     ______           __                  ______                           __
+#    / ____/_  _______/ /_____  ____ ___  / ____/__  ____  ___  _________ _/ /_____  __________
+#   / /   / / / / ___/ __/ __ \/ __ `__ \/ / __/ _ \/ __ \/ _ \/ ___/ __ `/ __/ __ \/ ___/ ___/
+#  / /___/ /_/ (__  ) /_/ /_/ / / / / / / /_/ /  __/ / / /  __/ /  / /_/ / /_/ /_/ / /  (__  )
+#  \____/\__,_/____/\__/\____/_/ /_/ /_/\____/\___/_/ /_/\___/_/   \__,_/\__/\____/_/  /____/
+
+# EXAMPLE GENERATOR
+# Materials Link: https://helpch.at/docs/1.8/org/bukkit/Material.html
+# Effetcs Link: https://helpch.at/docs/1.8/org/bukkit/Effect.html
+# Sounds Link: https://helpch.at/docs/1.8/index.html?org/bukkit/Sound.html
+generators:
+  diamond:
+    chargingMaterial: "STONE"
+    chargedMaterial: "DIAMOND_ORE"
+    delay: 5
+    itemDropped: "DIAMOND"
+      quantity: 2
+    chargeEffect: "CRIT"
+    chargeSound: "CHEST_OPEN"
+
+  cobblestone:
+    chargingMaterial: "STONE"
+    chargedMaterial: "COBBLESTONE"
+    delay: 5
+    itemDropped: "STONE_BUTTON"
+      quantity: 2
+    chargeEffect: "CRIT"
+    chargeSound: "CHEST_OPEN"
+
+  dirt:
+    chargingMaterial: "GRASS"
+    chargedMaterial: "DIRT"
+    delay: 5
+    itemDropped: "EGG"
+      quantity: 2
+    chargeEffect: "CRIT"
+    chargeSound: "CHEST_OPEN"

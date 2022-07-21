@@ -18,7 +18,6 @@ public class GeneratorsConfig {
 
      public GeneratorsConfig(GeneratorsLite plugin) {
           this.plugin = plugin;
-
           createConfig();
      }
 
@@ -26,8 +25,9 @@ public class GeneratorsConfig {
           configFile = new File(plugin.getDataFolder(), "generators.yml");
 
           if (!configFile.exists()) {
-              configFile.mkdirs();
-              plugin.saveResource("generators.yml", false);
+               configFile.getParentFile().mkdirs();
+
+               plugin.saveResource("generators.yml", false);
           }
 
           config = new YamlConfiguration();

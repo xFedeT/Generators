@@ -11,7 +11,7 @@ public final class GeneratorsLite extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        generatorsHandler = new GeneratorsHandler();
+        generatorsHandler = new GeneratorsHandler(this);
 
         registerCommands();
         registerEvents();

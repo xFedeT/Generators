@@ -29,21 +29,15 @@ public class GeneratorsCommand implements CommandExecutor {
             case 1:
                 switch (args[0]) {
                     case "cobblestone":
-                        Generator cobblestoneGenerator = new CobblestoneGenerator(plugin);
-                        plugin.getGeneratorsHandler().addGenerator(cobblestoneGenerator);
-                        player.getInventory().addItem(cobblestoneGenerator.getGeneratorItem());
+                        player.getInventory().addItem(plugin.getGeneratorsHandler().getCobblestoneGenerator().getGeneratorItem());
                         player.sendMessage(ChatColor.YELLOW + "+ Cobblestone");
                         break;
                     case "dirt":
-                        Generator dirtGenerator = new DirtGenerator(plugin);
-                        plugin.getGeneratorsHandler().addGenerator(dirtGenerator);
-                        player.getInventory().addItem(dirtGenerator.getGeneratorItem());
+                        player.getInventory().addItem(plugin.getGeneratorsHandler().getDirtGenerator().getGeneratorItem());
                         player.sendMessage(ChatColor.YELLOW + "+ Dirt");
                         break;
                     case "diamond":
-                        Generator diamondGenerator = new DiamondGenerator(plugin);
-                        plugin.getGeneratorsHandler().addGenerator(diamondGenerator);
-                        player.getInventory().addItem(diamondGenerator.getGeneratorItem());
+                        player.getInventory().addItem(plugin.getGeneratorsHandler().getDiamondGenerator().getGeneratorItem());
                         player.sendMessage(ChatColor.YELLOW + "+ Diamond");
                         break;
                 }
