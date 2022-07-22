@@ -11,31 +11,24 @@
 
 generators:
   diamond:
-    chargingMaterial: "STONE"
-    chargedMaterial: "DIAMOND_ORE"
+    name: "&b&lDiamond &8Generator"
+    material:
+      charging: "STONE"
+      charged: "DIAMOND_ORE"
     delay: 5
     drop: 
       item: "DIAMOND"
-      quantity: 1
-    chargeEffect: "CRIT"
-    chargeSound: "CHEST_OPEN"
-
+      amount: 1
+    effect: "CRIT"
+    sound: "CHEST_OPEN"
   cobblestone:
-    chargingMaterial: "STONE"
-    chargedMaterial: "COBBLESTONE"
+    name: "&7&lCobblestone &8Generator"
+    material:
+      charging: "STONE"
+      charged: "COBBLESTONE"
     delay: 5
     drop: 
       item: "STONE_BUTTON"
-      quantity: 2
-    chargeEffect: "CRIT"
-    chargeSound: "CHEST_OPEN"
-
-  dirt:
-    chargingMaterial: "GRASS"
-    chargedMaterial: "DIRT"
-    delay: 1
-    drop:
-      item: "EGG"
-      quantity: 2
-    chargeEffect: "CRIT"
-    chargeSound: "CHEST_OPEN"
+      amount: 2
+    effect: "CRIT"
+    sound: "CHEST_OPEN"

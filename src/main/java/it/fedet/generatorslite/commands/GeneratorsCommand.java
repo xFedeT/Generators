@@ -9,6 +9,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Map;
+
 @RequiredArgsConstructor
 public class GeneratorsCommand implements CommandExecutor {
     private final GeneratorsLite plugin;
@@ -27,20 +29,14 @@ public class GeneratorsCommand implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "Errore di sintassi!");
                 break;
             case 1:
-                switch (args[0]) {
-                    case "cobblestone":
-                        player.getInventory().addItem(plugin.getGeneratorsHandler().getCobblestoneGenerator().getGeneratorItem());
-                        player.sendMessage(ChatColor.YELLOW + "+ Cobblestone");
-                        break;
-                    case "dirt":
-                        player.getInventory().addItem(plugin.getGeneratorsHandler().getDirtGenerator().getGeneratorItem());
-                        player.sendMessage(ChatColor.YELLOW + "+ Dirt");
-                        break;
-                    case "diamond":
-                        player.getInventory().addItem(plugin.getGeneratorsHandler().getDiamondGenerator().getGeneratorItem());
-                        player.sendMessage(ChatColor.YELLOW + "+ Diamond");
-                        break;
+                Map<String, Generator> generators = plugin.getGeneratorsHandler().getGenerators();
+
+                for (String key : generators.keySet()) {
+                    if (!key.toLowerCase().equals(args[0])) continue;
+                    player.getInventory().addItem(generators.get(key).getGeneratorItem());
+                    player.sendMessage(ChatColor.YELLOW + "+ " + ChatColor.GOLD + key);
                 }
+
                 break;
         }
 

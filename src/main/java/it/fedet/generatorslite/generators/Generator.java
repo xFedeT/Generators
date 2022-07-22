@@ -18,6 +18,7 @@ public class Generator {
     @Getter private final Material chargingMaterial;
     @Getter private final Material chargedMaterial;
     @Getter private final Effect readyEffetc;
+    @Getter private final Sound sound;
     @Getter private final ItemStack dropItem;
     @Getter private final String generatorName;
     private final GeneratorsLite plugin;
@@ -28,11 +29,12 @@ public class Generator {
     private final List<ArmorStand> generatorsPotins;
 
     public Generator(int rechargeTime, Material chargingMaterial, Material chargedMaterial,
-                     Effect readyEffetc, ItemStack dropItem, String generatorName, GeneratorsLite plugin) {
+                     Effect readyEffetc, Sound sound, ItemStack dropItem, String generatorName, GeneratorsLite plugin) {
         this.rechargeTime = rechargeTime;
         this.chargingMaterial = chargingMaterial;
         this.chargedMaterial = chargedMaterial;
         this.readyEffetc = readyEffetc;
+        this.sound = sound;
         this.dropItem = dropItem;
         this.generatorName = generatorName;
         this.plugin = plugin;
@@ -98,10 +100,10 @@ public class Generator {
             if (!isGenerator(placedBlock)) return;
 
             placedBlock.setType(chargedMaterial);
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 10; i++)
                 placedBlock.getWorld().playEffect(placedBlock.getLocation().add(.5, .5, .5), readyEffetc, null);
-            }
-            placedBlock.getWorld().playSound(placedBlock.getLocation().add(.5, .5, .5), Sound.CHEST_OPEN, 0.3f, 0);
+
+            placedBlock.getWorld().playSound(placedBlock.getLocation().add(.5, .5, .5), sound, 0.3f, 0);
         }, rechargeTime * 20L);
     }
 
@@ -120,9 +122,8 @@ public class Generator {
     private ArmorStand getArmorStandFromLoc(Block placedBlock) {
         ArmorStand armorStand = null;
 
-        for (Entity entity : placedBlock.getWorld().getNearbyEntities(placedBlock.getLocation().add(.5, 0, .5), .5, .5, .5)) {
+        for (Entity entity : placedBlock.getWorld().getNearbyEntities(placedBlock.getLocation().add(.5, 0, .5), .5, .5, .5))
             if (generatorsPotins.contains(entity)) armorStand = (ArmorStand) entity;
-        }
 
         return armorStand;
     }
